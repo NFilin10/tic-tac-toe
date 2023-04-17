@@ -1,7 +1,60 @@
 #include <iostream>
+#include "Board.h"
+using namespace std;
 
-int main()
-{
-    std::cout<<"Hello, World!"<<std::endl;
-    return 0;
+
+int main() {
+    Board board;
+
+    char symbol1;
+    char symbol2;
+    cout << "Vali symbol millega mangima hakkad" << endl;
+    cin >> symbol1;
+
+
+
+    if (symbol1 == 'X'){
+        symbol2 = '0';
+    }
+
+    else{
+        symbol2 = 'X';
+    }
+
+    Mangija mangija1(symbol1);
+    Mangija mangija2(symbol2);
+
+    board.joonistaLaud();
+
+    char mangija1Valik;
+    char mangija2Valik;
+
+    bool voit = false;
+
+    while (!voit){
+        bool moveMade1 = false;
+        while (!moveMade1) {
+            cout << "Mangija1 sisesta lahter" << endl;
+            cin >> mangija1Valik;
+
+            moveMade1 = board.lisaKaik(mangija1Valik, mangija1);
+            if (moveMade1) {
+                board.joonistaLaud();
+            }
+        }
+        if (board.kontrolliVoit(mangija1)) break;
+
+
+
+        bool moveMade2 = false;
+        while (!moveMade2) {
+            cout << "Mangija2 sisesta lahter" << endl;
+            cin >> mangija2Valik;
+            moveMade2 = board.lisaKaik(mangija2Valik, mangija2);
+            if (moveMade2) {
+                board.joonistaLaud();
+            }
+        }
+        voit = board.kontrolliVoit(mangija2);
+    }
 }
