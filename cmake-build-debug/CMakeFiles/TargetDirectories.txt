@@ -1,0 +1,3 @@
+/Users/nikita_filin/Desktop/TU/С++/tic-tac-toe/cmake-build-debug/CMakeFiles/tic_tac_toe.dir
+/Users/nikita_filin/Desktop/TU/С++/tic-tac-toe/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/nikita_filin/Desktop/TU/С++/tic-tac-toe/cmake-build-debug/CMakeFiles/rebuild_cache.dir
