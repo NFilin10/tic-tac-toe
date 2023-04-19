@@ -11,6 +11,7 @@ private:
 public:
     Mangija(char);
     char getSymbol();
+    int arvutiKaik();
 };
 
 

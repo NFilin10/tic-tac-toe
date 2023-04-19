@@ -27,7 +27,6 @@ bool Board::lisaKaik(char lahter, Mangija mangija) {
             }
         }
     }
-    cout << "See lahter on juba valitud" << endl;
     return false;
 }
 
@@ -35,21 +34,21 @@ bool Board::kontrolliVoit(Mangija mangija) {
     for (int i = 0; i < 3; ++i) {
         if ((manguLaud[i][0] == manguLaud[i][1] && manguLaud[i][1] == manguLaud[i][2]) ||
             (manguLaud[0][i] == manguLaud[1][i] && manguLaud[1][i] == manguLaud[2][i])) {
-            cout << mangija.getSymbol() << " voitis";
+            cout << mangija.getSymbol() << " võitis";
             return true;
         }
     }
 
     if ((manguLaud[0][0] == manguLaud[1][1] && manguLaud[1][1] == manguLaud[2][2]) ||
         (manguLaud[0][2] == manguLaud[1][1] && manguLaud[1][1] == manguLaud[2][0])) {
-        cout << mangija.getSymbol() << " voitis";
+        cout << mangija.getSymbol() << " võitis";
         return true;
     }
 
     if(manguLaud[0][0] != '1' && manguLaud[0][1] != '2' && manguLaud[0][2] != '3' &&
     manguLaud[1][0] != '4' && manguLaud[1][1] != '5' && manguLaud[1][2] != '6' &&
     manguLaud[2][0] != '7' && manguLaud[2][1] != '8' && manguLaud[2][2] != '9'){
-        cout << "Its a tie" << endl;
+        cout << "Viik" << endl;
         return true;
     }
 
@@ -65,4 +64,14 @@ Mangija::Mangija(char symbol) {
 
 char Mangija::getSymbol() {
     return symbol;
+}
+
+int Mangija::arvutiKaik() {
+
+    srand(std::time(0));
+    int kaik = std::rand() % 9 + 1;
+    return kaik;
+
+
+
 }
