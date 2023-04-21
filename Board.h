@@ -1,6 +1,7 @@
 #ifndef TIC_TAC_TOE_BOARD_H
 #define TIC_TAC_TOE_BOARD_H
 #include "iostream"
+#include <ctime>
 
 using namespace std;
 
@@ -28,7 +29,6 @@ public:
     void joonistaLaud();
     bool lisaKaik(char, Mangija);
     bool kontrolliVoit(Mangija);
-
 };
 
 

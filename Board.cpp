@@ -18,16 +18,15 @@ void Board::joonistaLaud() {
 }
 
 bool Board::lisaKaik(char lahter, Mangija mangija) {
-    for (int i = 0; i < 3; ++i) {
-        for (int j = 0; j < 3; ++j) {
-            if ((manguLaud[i][j] != 'X' || manguLaud[i][j] != '0') && manguLaud[i][j] == lahter){
-                manguLaud[i][j] = mangija.getSymbol();
-                return true;
-
+    for (int i = 0; i < 3; ++i) { // Iga rea seast
+        for (int j = 0; j < 3; ++j) { // Iga elemendi seast
+            if ((manguLaud[i][j] != 'X' || manguLaud[i][j] != '0') && manguLaud[i][j] == lahter){ // Kui on tegu vaba elemendiga ja element on see mida otsime siis...
+                manguLaud[i][j] = mangija.getSymbol(); // Asendame selle mängija sümboliga
+                return true; // Ja tagastame true, sest käik on leitud
             }
         }
     }
-    return false;
+    return false; // Kui käiku ei leitud, tagastame false
 }
 
 bool Board::kontrolliVoit(Mangija mangija) {
@@ -67,11 +66,8 @@ char Mangija::getSymbol() {
 }
 
 int Mangija::arvutiKaik() {
-
     srand(std::time(0));
     int kaik = std::rand() % 9 + 1;
     return kaik;
-
-
-
 }
+board.joonistaLaud();
