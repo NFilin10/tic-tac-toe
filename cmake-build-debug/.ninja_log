@@ -88,3 +88,6 @@
 2	224	1681931924225492524	CMakeFiles/tic_tac_toe.dir/Board.cpp.o	47e0e05011f39a3f
 1	224	1681931924225491358	CMakeFiles/tic_tac_toe.dir/main.cpp.o	8b5958758dc0b759
 224	261	1681931924263942463	tic_tac_toe	ed830d035cebcdfd
+1	2307	1682149899758129802	CMakeFiles/tic_tac_toe.dir/main.cpp.o	8b5958758dc0b759
+1	245	1682149954852891159	CMakeFiles/tic_tac_toe.dir/Board.cpp.o	47e0e05011f39a3f
+245	441	1682149955049865071	tic_tac_toe	ed830d035cebcdfd

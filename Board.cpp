@@ -70,4 +70,4 @@ int Mangija::arvutiKaik() {
     int kaik = std::rand() % 9 + 1;
     return kaik;
 }
-board.joonistaLaud();
+//board.joonistaLaud();

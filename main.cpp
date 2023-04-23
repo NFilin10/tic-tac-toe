@@ -8,7 +8,7 @@ int main() {
     Board board;
     char symbol1;
     char symbol2;
-    cout << "Vali sümbol millega mangima hakkad: ";
+    cout << "Vali sümbol millega mangima hakkad X/0: ";
     cin >> symbol1;
 
 
