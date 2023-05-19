@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class Board;
+
 class Mangija{
 private:
     char symbol;
@@ -12,7 +14,7 @@ private:
 public:
     Mangija(char);
     char getSymbol();
-    int arvutiKaik();
+    char arvutiKaik(Board);
 };
 
 
@@ -30,7 +32,7 @@ public:
     bool lisaKaik(char, Mangija);
     bool kontrolliVoit(Mangija);
     bool onLaudTäis();
-
+    char* getKäigud();
 };
 
 

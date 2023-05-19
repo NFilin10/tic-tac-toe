@@ -11,15 +11,15 @@ int main() {
 
     char symbol1;
     char symbol2;
-    cout << "Vali sümbol millega mängima hakkad:\n1. X\n2. 0" << endl;
+    cout << "Vali sümbol millega mängima hakkad:\n1. X\n2. O" << endl;
     cin >> symbol1;
 
     if (symbol1 == '1') {
         symbol1 = 'X';
-        symbol2 = '0';
+        symbol2 = 'O';
     } else {
         symbol2 = 'X';
-        symbol1 = '0';
+        symbol1 = 'O';
     }
 
     Mangija mangija1(symbol1);
@@ -64,10 +64,7 @@ int main() {
                     bool moveMade2 = false;
                     cout << "Arvuti käib" << endl;
                     while (!moveMade2) {
-                        int arvutiKaik = mangija2.arvutiKaik();
-                        char arvutiKaik1 = arvutiKaik + '0';
-
-                        moveMade2 = board.lisaKaik(arvutiKaik1, mangija2);
+                        moveMade2 = board.lisaKaik(mangija2.arvutiKaik(board), mangija2);
                         if (moveMade2) {
                             board.joonistaLaud();
                         }
