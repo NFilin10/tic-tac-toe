@@ -31,30 +31,36 @@ bool Board::lisaKaik(char lahter, Mangija mangija) {
 
 bool Board::kontrolliVoit(Mangija mangija) {
     for (int i = 0; i < 3; ++i) {
-        if ((manguLaud[i][0] == manguLaud[i][1] && manguLaud[i][1] == manguLaud[i][2]) ||
-            (manguLaud[0][i] == manguLaud[1][i] && manguLaud[1][i] == manguLaud[2][i])) {
-            cout << mangija.getSymbol() << " võitis";
+        if ((manguLaud[i][0] == manguLaud[i][1] && manguLaud[i][1] == manguLaud[i][2] && mangija.getSymbol() == manguLaud[i][0]) ||
+            (manguLaud[0][i] == manguLaud[1][i] && manguLaud[1][i] == manguLaud[2][i] && mangija.getSymbol() == manguLaud[0][i])) {
+            //cout << mangija.getSymbol() << " võitis FIRST";
             return true;
         }
     }
 
-    if ((manguLaud[0][0] == manguLaud[1][1] && manguLaud[1][1] == manguLaud[2][2]) ||
-        (manguLaud[0][2] == manguLaud[1][1] && manguLaud[1][1] == manguLaud[2][0])) {
-        cout << mangija.getSymbol() << " võitis";
+    if (((manguLaud[0][0] == manguLaud[1][1] && manguLaud[1][1] == manguLaud[2][2]) ||
+         (manguLaud[0][2] == manguLaud[1][1] && manguLaud[1][1] == manguLaud[2][0])) &&
+        (mangija.getSymbol() == manguLaud[1][1])) {
+        //cout << mangija.getSymbol() << " võitis";
         return true;
     }
 
-    if(manguLaud[0][0] != '1' && manguLaud[0][1] != '2' && manguLaud[0][2] != '3' &&
-    manguLaud[1][0] != '4' && manguLaud[1][1] != '5' && manguLaud[1][2] != '6' &&
-    manguLaud[2][0] != '7' && manguLaud[2][1] != '8' && manguLaud[2][2] != '9'){
-        cout << "Viik" << endl;
-        return true;
-    }
 
     return false;
-
-
 }
+
+
+bool Board::onLaudTäis() {
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            if (manguLaud[i][j] != 'X' && manguLaud[i][j] != '0') {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 
 
 Mangija::Mangija(char symbol) {

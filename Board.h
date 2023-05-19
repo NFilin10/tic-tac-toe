@@ -29,6 +29,8 @@ public:
     void joonistaLaud();
     bool lisaKaik(char, Mangija);
     bool kontrolliVoit(Mangija);
+    bool onLaudTäis();
+
 };
 
 
