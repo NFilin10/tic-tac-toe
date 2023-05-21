@@ -1,10 +1,12 @@
 #include <iostream>
 #include "Board.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
 int main() {
+    vector<Board> lauad;
     int score1 = 0;
     int score2 = 0;
     int round = 1;
@@ -212,6 +214,33 @@ int main() {
         cout << "Kas soovite veel ühe vooru mängida? (j/e): ";
         cin >> playAgainChoice;
         playAgain = (playAgainChoice == 'j' || playAgainChoice == 'J');
+        lauad.push_back(board);
+    }
+    // Väljastame mängu kokkuvõtte ja määrame võitja
+    cout << endl << "Mängude kokkuvõtte:" << endl << endl;
+    for (size_t i = 0; i < lauad.size(); i++) { // Väljastame iga laua puhul mängu tulemuse ja laua seisu
+        cout << i + 1 << ". mäng:" << endl;
+        Board board = lauad[i];
+        cout << "Mängu tulemus: ";
+        if (board.kontrolliVoit(mangija1)) {
+            cout << "1. Mängija võit" << endl;
+        } else if (board.kontrolliVoit(mangija2)) {
+            cout << "2. Mängija võit" << endl;
+        } else {
+            cout << "Viik" << endl;
+        }
+        cout << "Lõppseis: " << endl;
+        board.joonistaLaud();
+    }
+    cout << "Kõikide mängude lõppseis:" << endl; // Väljastame kõikide mängude lõppseisu
+    cout << "Mängija 1: " << score1 << " punkti" << endl;
+    cout << "Mängija 2: " << score2 << " punkti" << endl;
+    if (score1 == score2) { // Määrame võitja
+        cout << "Viik!" << endl;
+    } else if (score1 > score2) {
+        cout << "Mängu võitis Mängija 1!" << endl;
+    } else {
+        cout << "Mängu võitis Mängija 2!" << endl;
     }
     return 0;
 }
