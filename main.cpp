@@ -11,7 +11,7 @@ int main() {
 
     char symbol1;
     char symbol2;
-
+    
     // Mängija valib sümboli
     cout << "Vali sümbol millega mängima hakkad:\n1. X\n2. O" << endl;
     cin >> symbol1;
@@ -38,6 +38,11 @@ int main() {
     char kumbGamemode;
     cout << "Kas mängid arvuti või teise mängija vastu [a/m]: ";
     cin >> kumbGamemode;
+    while (kumbGamemode != 'a' && kumbGamemode != 'm') { // Kui mängija ei vali sobiva gamemodei, siis sunnib tal uuesti valida
+        cout << "Valik '" << kumbGamemode << "' ei eksisteeri." << endl;
+        cout << "Kas mängid arvuti või teise mängija vastu [a/m]: ";
+        cin >> kumbGamemode;
+    }
 
     bool playAgain = true;
 
