@@ -37,100 +37,134 @@ int main() {
 
     bool playAgain = true;
 
+    bool käik1 = true;
+    bool algasKäik1 = false;
+
     while (playAgain) {
         Board board;
         board.joonistaLaud();
+        voit = false;
+        viik = false;
+        käik1 = !algasKäik1;
+        algasKäik1 = käik1;
         switch (kumbGamemode) {
             case 'a':
                 while (!voit && !viik) {
-                    bool moveMade1 = false;
-                    while (!moveMade1) {
-                        cout << "Mängija1 sisesta lahter: ";
-                        cin >> mangija1Valik;
+                    for (int i = 0; i < 2; i++) {
+                        bool moveMade1 = false;
+                        bool moveMade2 = false;
+                        if (käik1) {
+                            while (!moveMade1) {
+                                cout << "Mängija1 sisesta lahter: ";
+                                cin >> mangija1Valik;
 
-                        if (mangija1Valik.size() == 1) {
-                            char mangija1ValikC = mangija1Valik.c_str()[0];
-                            moveMade1 = board.lisaKaik(mangija1ValikC, mangija1);
-                        }
+                                if (mangija1Valik.size() == 1) {
+                                    char mangija1ValikC = mangija1Valik.c_str()[0];
+                                    moveMade1 = board.lisaKaik(mangija1ValikC, mangija1);
+                                }
 
-                        if (moveMade1) {
-                            board.joonistaLaud();
+                                if (moveMade1) {
+                                    board.joonistaLaud();
+                                } else {
+                                    cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
+                                }
+                            }
+
+                            if (board.kontrolliVoit(mangija1)) {
+                                viik = false;
+                                voit = true;
+                                break;
+                            }
+
+                            if (board.onLaudTäis()) {
+                                viik = true;
+                                break;
+                            }
+                            käik1 = !käik1;
                         } else {
-                            cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
+                            cout << "Arvuti käib" << endl;
+                            while (!moveMade2) {
+                                moveMade2 = board.lisaKaik(mangija2.arvutiKaik(board), mangija2);
+                                if (moveMade2) {
+                                    board.joonistaLaud();
+                                }
+                            }
+
+                            if (board.kontrolliVoit(mangija2)) {
+                                viik = false;
+                                voit = true;
+                                break;
+                            }
+                            if (board.onLaudTäis()) {
+                                viik = true;
+                                break;
+                            }
+                            käik1 = !käik1;
                         }
-                    }
-
-                    if (board.kontrolliVoit(mangija1)) break;
-                    if (board.onLaudTäis()) {
-                        viik = true;
-                        break;
-                    }
-
-                    bool moveMade2 = false;
-                    cout << "Arvuti käib" << endl;
-                    while (!moveMade2) {
-                        moveMade2 = board.lisaKaik(mangija2.arvutiKaik(board), mangija2);
-                        if (moveMade2) {
-                            board.joonistaLaud();
-                        }
-                    }
-
-                    if (board.kontrolliVoit(mangija2)) {
-                        viik = false;
-                        break;
-                    }
-                    if (board.onLaudTäis()) {
-                        viik = true;
-                        break;
                     }
                 }
                 break;
             case 'm':
                 while (!voit && !viik) {
-                    bool moveMade1 = false;
-                    while (!moveMade1) {
-                        cout << "Mängija1 sisesta lahter: ";
-                        cin >> mangija1Valik;
+                    for (int i = 0; i < 2; i++) {
+                        bool moveMade1 = false;
+                        bool moveMade2 = false;
+                        if (käik1) {
+                            while (!moveMade1) {
+                                cout << "Mängija1 sisesta lahter: ";
+                                cin >> mangija1Valik;
 
-                        if (mangija1Valik.size() == 1) {
-                            char mangija1ValikC = mangija1Valik.c_str()[0];
-                            moveMade1 = board.lisaKaik(mangija1ValikC, mangija1);
-                        }
+                                if (mangija1Valik.size() == 1) {
+                                    char mangija1ValikC = mangija1Valik.c_str()[0];
+                                    moveMade1 = board.lisaKaik(mangija1ValikC, mangija1);
+                                }
 
-                        if (moveMade1) {
-                            board.joonistaLaud();
+                                if (moveMade1) {
+                                    board.joonistaLaud();
+                                } else {
+                                    cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
+                                }
+                            }
+
+                            if (board.kontrolliVoit(mangija1)) {
+                                viik = false;
+                                voit = true;
+                                break;
+                            }
+
+                            if (board.onLaudTäis()) {
+                                viik = true;
+                                break;
+                            }
+                            käik1 = !käik1;
                         } else {
-                            cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
+                            while (!moveMade2) {
+                                cout << "Mängija2 sisesta lahter: ";
+                                cin >> mangija2Valik;
+
+                                if (mangija2Valik.size() == 1) {
+                                    char mangija2ValikC = mangija2Valik.c_str()[0];
+                                    moveMade2 = board.lisaKaik(mangija2ValikC, mangija2);
+                                }
+
+                                if (moveMade2) {
+                                    board.joonistaLaud();
+                                } else {
+                                    cout << "Lahter " << mangija2Valik << " ei sobi." << endl;
+                                }
+                            }
+
+                            if (board.kontrolliVoit(mangija2)) {
+                                viik = false;
+                                voit = true;
+                                break;
+                            }
+                            if (board.onLaudTäis()) {
+                                viik = true;
+                                break;
+                            }
+                            käik1 = !käik1;
                         }
-                    }
-
-                    if (board.kontrolliVoit(mangija1)) break;
-                    if (board.onLaudTäis()) {
-                        viik = true;
-                        break;
-                    }
-
-                    bool moveMade2 = false;
-                    while (!moveMade2) {
-                        cout << "Mängija2 sisesta lahter: ";
-                        cin >> mangija2Valik;
-
-                        if (mangija2Valik.size() == 1) {
-                            char mangija2ValikC = mangija2Valik.c_str()[0];
-                            moveMade2 = board.lisaKaik(mangija2ValikC, mangija2);
-                        }
-
-                        if (moveMade2) {
-                            board.joonistaLaud();
-                        } else {
-                            cout << "Lahter " << mangija2Valik << " ei sobi." << endl;
-                        }
-                    }
-
-                    if (board.kontrolliVoit(mangija2)) break;
-                    if (board.onLaudTäis()) {
-                        viik = true;
-                        break;
                     }
                 }
                 break;
@@ -148,7 +182,6 @@ int main() {
             score2++;
         } else if (viik) {
             cout << "Viik!" << endl;
-            viik = false;
         }
 
         // Display the current scores

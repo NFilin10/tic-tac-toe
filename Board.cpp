@@ -79,7 +79,7 @@ char Mangija::arvutiKaik(Board board) {
     }
     
     srand(std::time(0));
-    int kaik = std::rand() % (i - 1);
+    int kaik = std::rand() % (i);
     cout << käigud[kaik] << " :" << endl;
     return käigud[kaik];
 }
@@ -91,7 +91,8 @@ char* Board::getKäigud() {
         for (int j = 0; j < 3; j++) {
             char ruut = manguLaud[i][j];
             if (isdigit(ruut)) {
-                käigud[indeks++] = ruut; 
+                käigud[indeks] = ruut;
+                indeks++;
             }
         }
     }
