@@ -11,10 +11,12 @@ int main() {
 
     char symbol1;
     char symbol2;
+
+    // Mängija valib sümboli
     cout << "Vali sümbol millega mängima hakkad:\n1. X\n2. O" << endl;
     cin >> symbol1;
 
-    if (symbol1 == '1') {
+    if (symbol1 == '1') { // Määrame sümbolid valiku järgi
         symbol1 = 'X';
         symbol2 = 'O';
     } else {
@@ -22,6 +24,7 @@ int main() {
         symbol1 = 'O';
     }
 
+    // Loome mängijad
     Mangija mangija1(symbol1);
     Mangija mangija2(symbol2);
 
@@ -31,6 +34,7 @@ int main() {
     bool voit = false;
     bool viik = false;
 
+    // Mängija valib, kas ta tahab mängida arvuti või teise mängija vastu
     char kumbGamemode;
     cout << "Kas mängid arvuti või teise mängija vastu [a/m]: ";
     cin >> kumbGamemode;
@@ -40,36 +44,38 @@ int main() {
     bool käik1 = true;
     bool algasKäik1 = false;
 
-    while (playAgain) {
-        Board board;
-        board.joonistaLaud();
+    while (playAgain) { // Peamine mängu loop
+        Board board; // Loome uue laua
+        board.joonistaLaud(); // Väljastame laua
         voit = false;
         viik = false;
-        käik1 = !algasKäik1;
-        algasKäik1 = käik1;
+        // Käikude vahetus
+        käik1 = !algasKäik1; // Esimese käigu saab see, kes käis teisena eelmine mäng
+        algasKäik1 = käik1; // Jätame meelde, kumb käib esimesena
         switch (kumbGamemode) {
-            case 'a':
-                while (!voit && !viik) {
-                    for (int i = 0; i < 2; i++) {
+            case 'a': // Arvuti vastu mängimine
+                while (!voit && !viik) { // Kui keegi ei ole võitnud ja meil ei ole viik, siis mäng käib edasi
+                    for (int i = 0; i < 2; i++) { // Üks käik mõlema mängija jaoks
                         bool moveMade1 = false;
                         bool moveMade2 = false;
-                        if (käik1) {
-                            while (!moveMade1) {
+                        if (käik1) { // Kui esimene mängija käib
+                            while (!moveMade1) { // Kordama nii kaua, kuni mängija teeb sobiva käigu
                                 cout << "Mängija1 sisesta lahter: ";
-                                cin >> mangija1Valik;
+                                cin >> mangija1Valik; // Mängija valib, mis lahtrisse ta tahab märki lisada
 
-                                if (mangija1Valik.size() == 1) {
-                                    char mangija1ValikC = mangija1Valik.c_str()[0];
-                                    moveMade1 = board.lisaKaik(mangija1ValikC, mangija1);
+                                if (mangija1Valik.size() == 1) { // Kui mängija sisestas mingit sorti märgi
+                                    char mangija1ValikC = mangija1Valik.c_str()[0]; // Loome char tüüpi muutuja selle märgiga
+                                    moveMade1 = board.lisaKaik(mangija1ValikC, mangija1); // Ja proovime käiku lisada
                                 }
 
-                                if (moveMade1) {
-                                    board.joonistaLaud();
-                                } else {
+                                if (moveMade1) { // Kui käik sobis
+                                    board.joonistaLaud(); // Siis joonistame laua
+                                } else { // Muidu väljastame, et käik ei sobinud ja laseme mängijal uue käigu teha.
                                     cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
                                 }
                             }
 
+                            // Peale igat käiku kontrollime, kas keegi võitis või kas meil on viik
                             if (board.kontrolliVoit(mangija1)) {
                                 viik = false;
                                 voit = true;
@@ -80,16 +86,18 @@ int main() {
                                 viik = true;
                                 break;
                             }
-                            käik1 = !käik1;
-                        } else {
+
+                            käik1 = !käik1; // Nüüd on teise mängija käik
+                        } else { // Kui arvuti käib
                             cout << "Arvuti käib" << endl;
-                            while (!moveMade2) {
-                                moveMade2 = board.lisaKaik(mangija2.arvutiKaik(board), mangija2);
-                                if (moveMade2) {
+                            while (!moveMade2) { // Igaks juhuks on while loop, et vältida probleeme, mille peale meie ei tulnud. Ei tohiks olla suurt mõju programmi kiirusele, kuna arvuti valib käigu ainult sobivate käikude seast.
+                                moveMade2 = board.lisaKaik(mangija2.arvutiKaik(board), mangija2); // Arvuti valib käigu ja proovib seda mängida
+                                if (moveMade2) { // Kui mängimine õnnestus, väljastame laua.
                                     board.joonistaLaud();
                                 }
                             }
 
+                            // Peale igat käiku kontrollime, kas keegi võitis või kas meil on viik
                             if (board.kontrolliVoit(mangija2)) {
                                 viik = false;
                                 voit = true;
@@ -99,33 +107,34 @@ int main() {
                                 viik = true;
                                 break;
                             }
-                            käik1 = !käik1;
+                            käik1 = !käik1; // Nüüd on esimese mängija käik
                         }
                     }
                 }
                 break;
-            case 'm':
-                while (!voit && !viik) {
-                    for (int i = 0; i < 2; i++) {
+            case 'm': // Kahe mängija vahel mängimine
+                while (!voit && !viik) { // Kui keegi ei ole võitnud ja meil ei ole viik, siis mäng käib edasi
+                    for (int i = 0; i < 2; i++) { // Üks käik mõlema mängija jaoks
                         bool moveMade1 = false;
                         bool moveMade2 = false;
-                        if (käik1) {
-                            while (!moveMade1) {
+                        if (käik1) { // Kui esimene mängija käib
+                            while (!moveMade1) { // Kordama nii kaua, kuni mängija teeb sobiva käigu
                                 cout << "Mängija1 sisesta lahter: ";
-                                cin >> mangija1Valik;
+                                cin >> mangija1Valik; // Mängija valib, mis lahtrisse ta tahab märki lisada
 
-                                if (mangija1Valik.size() == 1) {
-                                    char mangija1ValikC = mangija1Valik.c_str()[0];
-                                    moveMade1 = board.lisaKaik(mangija1ValikC, mangija1);
+                                if (mangija1Valik.size() == 1) { // Kui mängija sisestas mingit sorti märgi
+                                    char mangija1ValikC = mangija1Valik.c_str()[0]; // Loome char tüüpi muutuja selle märgiga
+                                    moveMade1 = board.lisaKaik(mangija1ValikC, mangija1); // Ja proovime käiku lisada
                                 }
 
-                                if (moveMade1) {
-                                    board.joonistaLaud();
-                                } else {
+                                if (moveMade1) { // Kui käik sobis
+                                    board.joonistaLaud(); // Siis joonistame laua
+                                } else { // Muidu väljastame, et käik ei sobinud ja laseme mängijal uue käigu teha.
                                     cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
                                 }
                             }
 
+                            // Peale igat käiku kontrollime, kas keegi võitis või kas meil on viik
                             if (board.kontrolliVoit(mangija1)) {
                                 viik = false;
                                 voit = true;
@@ -136,34 +145,38 @@ int main() {
                                 viik = true;
                                 break;
                             }
-                            käik1 = !käik1;
-                        } else {
-                            while (!moveMade2) {
-                                cout << "Mängija2 sisesta lahter: ";
-                                cin >> mangija2Valik;
 
-                                if (mangija2Valik.size() == 1) {
-                                    char mangija2ValikC = mangija2Valik.c_str()[0];
-                                    moveMade2 = board.lisaKaik(mangija2ValikC, mangija2);
+                            käik1 = !käik1; // Nüüd on teise mängija käik
+                        } else { // Kui teine mängija käib
+                            while (!moveMade2) { // Kordama nii kaua, kuni mängija teeb sobiva käigu
+                                cout << "Mängija2 sisesta lahter: ";
+                                cin >> mangija2Valik; // Mängija valib, mis lahtrisse ta tahab märki lisada
+
+                                if (mangija2Valik.size() == 1) { // Kui mängija sisestas mingit sorti märgi
+                                    char mangija2ValikC = mangija2Valik.c_str()[0]; // Loome char tüüpi muutuja selle märgiga
+                                    moveMade2 = board.lisaKaik(mangija2ValikC, mangija2); // Ja proovime käiku lisada
                                 }
 
-                                if (moveMade2) {
-                                    board.joonistaLaud();
-                                } else {
+                                if (moveMade2) { // Kui käik sobis
+                                    board.joonistaLaud(); // Siis joonistame laua
+                                } else { // Muidu väljastame, et käik ei sobinud ja laseme mängijal uue käigu teha.
                                     cout << "Lahter " << mangija2Valik << " ei sobi." << endl;
                                 }
                             }
 
+                            // Peale igat käiku kontrollime, kas keegi võitis või kas meil on viik
                             if (board.kontrolliVoit(mangija2)) {
                                 viik = false;
                                 voit = true;
                                 break;
                             }
+
                             if (board.onLaudTäis()) {
                                 viik = true;
                                 break;
                             }
-                            käik1 = !käik1;
+
+                            käik1 = !käik1; // Nüüd on esimese mängija käik
                         }
                     }
                 }
@@ -171,9 +184,9 @@ int main() {
             default:
                 break;
         }
-        round++;
+        round++; // Mäng on läbi, lisame roundi
 
-        // Update the scores based on the result of the round
+        // Uuendame punkte, kui keegi võitis ja väljastame mängu seisu
         if (board.kontrolliVoit(mangija1)) {
             cout << "Mängija 1 võitis vooru!" << endl;
             score1++;
@@ -184,12 +197,12 @@ int main() {
             cout << "Viik!" << endl;
         }
 
-        // Display the current scores
+        // Väljastab punktid
         cout << "Kokkuvõttes:" << endl;
         cout << "Mängija 1: " << score1 << " punkti" << endl;
         cout << "Mängija 2: " << score2 << " punkti" << endl;
 
-        // Ask the players if they want to play another round
+        // Küsib, kas mängija tahab uuesti mängida
         char playAgainChoice;
         cout << "Kas soovite veel ühe vooru mängida? (j/e): ";
         cin >> playAgainChoice;
