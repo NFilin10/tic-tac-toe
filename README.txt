@@ -1,0 +1,2 @@
+Projekti kompileerimiseks liigu README.txt failiga samasse kausta ning kirjuta terminalis "make".
+Projekti käivitamiseks Linuxis liigu README.txt failiga samasse kausta ning kirjuta terminalis "./tictactoe".
