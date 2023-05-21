@@ -19,7 +19,6 @@ public:
 
 
 class Board {
-
 private:
     char manguLaud[3][3] {
             {'1','2','3'},
@@ -34,7 +33,5 @@ public:
     bool onLaudTäis();
     char* getKäigud();
 };
-
-
 
 #endif
