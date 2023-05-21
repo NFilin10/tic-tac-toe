@@ -75,7 +75,10 @@ int main() {
                         }
                     }
 
-                    if (board.kontrolliVoit(mangija1)) break;
+                    if (board.kontrolliVoit(mangija2)) {
+                        viik = false;
+                        break;
+                    }
                     if (board.onLaudTäis()) {
                         viik = true;
                         break;
