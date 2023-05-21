@@ -26,6 +26,10 @@ void Board::joonistaLaud() {
  * Kui lahtris on juba sümbol, siis tagastab false.
 */
 bool Board::lisaKaik(char lahter, Mangija mangija) {
+    if (lahter == 'X' || lahter == 'O') { // Kui mangija proovib sisestada sümboli, tagastame false
+        return false;
+    }
+    
     for (int i = 0; i < 3; ++i) { // Iga rea seast
         for (int j = 0; j < 3; ++j) { // Iga elemendi seast
             if ((manguLaud[i][j] != 'X' || manguLaud[i][j] != 'O') && manguLaud[i][j] == lahter){ // Kui on tegu vaba elemendiga ja element on see mida otsime siis...
