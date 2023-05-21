@@ -59,7 +59,12 @@ int main() {
                             cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
                         }
                     }
+
                     if (board.kontrolliVoit(mangija1)) break;
+                    if (board.onLaudTäis()) {
+                        viik = true;
+                        break;
+                    }
 
                     bool moveMade2 = false;
                     cout << "Arvuti käib" << endl;
@@ -69,11 +74,11 @@ int main() {
                             board.joonistaLaud();
                         }
                     }
-                    voit = board.kontrolliVoit(mangija2);
-                    viik = board.onLaudTäis() && !voit;
 
-                    if (viik) {
-                        cout << "Viik!" << endl;
+                    if (board.kontrolliVoit(mangija1)) break;
+                    if (board.onLaudTäis()) {
+                        viik = true;
+                        break;
                     }
                 }
                 break;
@@ -95,8 +100,8 @@ int main() {
                             cout << "Lahter " << mangija1Valik << " ei sobi." << endl;
                         }
                     }
-                    if (board.kontrolliVoit(mangija1)) break;
 
+                    if (board.kontrolliVoit(mangija1)) break;
                     if (board.onLaudTäis()) {
                         viik = true;
                         break;
@@ -118,11 +123,11 @@ int main() {
                             cout << "Lahter " << mangija2Valik << " ei sobi." << endl;
                         }
                     }
-                    voit = board.kontrolliVoit(mangija2);
-                    viik = board.onLaudTäis() && !voit;
 
-                    if (viik) {
-                        cout << "Viik!" << endl;
+                    if (board.kontrolliVoit(mangija2)) break;
+                    if (board.onLaudTäis()) {
+                        viik = true;
+                        break;
                     }
                 }
                 break;
@@ -138,6 +143,9 @@ int main() {
         } else if (board.kontrolliVoit(mangija2)) {
             cout << "Mängija 2 võitis vooru!" << endl;
             score2++;
+        } else if (viik) {
+            cout << "Viik!" << endl;
+            viik = false;
         }
 
         // Display the current scores

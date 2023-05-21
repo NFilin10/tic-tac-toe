@@ -20,7 +20,6 @@ void Board::joonistaLaud() {
 bool Board::lisaKaik(char lahter, Mangija mangija) {
     for (int i = 0; i < 3; ++i) { // Iga rea seast
         for (int j = 0; j < 3; ++j) { // Iga elemendi seast
-            cout << manguLaud[i][j] << ":" << lahter << endl;
             if ((manguLaud[i][j] != 'X' || manguLaud[i][j] != 'O') && manguLaud[i][j] == lahter){ // Kui on tegu vaba elemendiga ja element on see mida otsime siis...
                 manguLaud[i][j] = mangija.getSymbol(); // Asendame selle mängija sümboliga
                 return true; // Ja tagastame true, sest käik on leitud
